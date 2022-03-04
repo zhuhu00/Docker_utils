@@ -19,8 +19,8 @@ services:
 
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
-      - ../../faster-lio:/root/catkin_ws/src/faster-lio
-      - ${DATASET_DIR}:/root/Dataset
+      # - ../../faster-lio:/root/catkin_ws/src/faster-lio
+      # - ${DATASET_DIR}:/root/Dataset
 
     entrypoint: /ros_entrypoint.sh
     network_mode: host

@@ -1,7 +1,8 @@
 # Copyright (C) 2021, Hu Zhu, SUSTech
 # email: zhuhu00@foxmail.com
 
-FROM nvidia/cudagl:10.2-devel-ubuntu18.04
+# FROM nvidia/cudagl:10.2-devel-ubuntu18.04
+FROM zhuhu/cuda102-ros-ubuntu18:0.1
 
 # ============以下内容在镜像已有=zhuhu/cuda102-ros-ubuntu18========
 ENV LANG C.UTF-8
