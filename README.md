@@ -24,6 +24,10 @@ docker-compose build
 docker-compose up
 ```
 
+# Some issues
+![](https://raw.githubusercontent.com/zhuhu00/img/master/2022-04-08-17-05-47.png)
+```xhost +```
+
 # Some Repositories
 - [faster-lio](https://github.com/gaoxiang12/faster-lio)
 - [LARVIO](https://github.com/zhuhu00/LARVIO)

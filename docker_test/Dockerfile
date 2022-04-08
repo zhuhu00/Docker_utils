@@ -63,6 +63,7 @@ RUN apt update \
         gdb \
         sudo \
         software-properties-common\
+        apt-utils\
     && rm -rf /var/lib/apt/lists/*
 
 # # Install cmake
@@ -131,11 +132,6 @@ RUN apt update \
 # RUN apt update && \
 #     apt install -y vim tmux xterm lxterminal
 
-# Realsense sdk and ros package
-RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-key F6E65AC044F831AC80A06380C8B3A55A6F3EFCDE || sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-key F6E65AC044F831AC80A06380C8B3A55A6F3EFCDE
-RUN add-apt-repository "deb https://librealsense.intel.com/Debian/apt-repo $(lsb_release -cs) main" -u
-RUN apt-get install -y librealsense2-dkms librealsense2-utils librealsense2-dev
-
 # RUN sudo apt install -y pkg-config libegl1-mesa-dev libwayland-dev libxkbcommon-dev wayland-protocols \
 #     ros-melodic-octomap* \ 
 #     ros-melodic-hector-trajectory-server
@@ -156,6 +152,12 @@ RUN apt-get install -y librealsense2-dkms librealsense2-utils librealsense2-dev
 RUN echo -e "\nPS1='\[\e[1;35m\]\u@\h:\[\e[0m\]\[\e[1;33m\]\w\[\e[1;35m\]\[\e[0m\]\[\e[1;34m\]\$ \[\e[0m\]'" >> /root/.bashrc
 # RUN cat /root/.bashrc
 
+#  ===========分割线====以上为cuda102-ubuntu-ros的内容==========
+# Realsense sdk and ros package
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-key F6E65AC044F831AC80A06380C8B3A55A6F3EFCDE || sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-key F6E65AC044F831AC80A06380C8B3A55A6F3EFCDE
+RUN add-apt-repository "deb https://librealsense.intel.com/Debian/apt-repo $(lsb_release -cs) main" -u
+RUN apt-get install -y librealsense2-dkms librealsense2-utils librealsense2-dev ros-melodic-ddynamic-reconfigure
+
 # realsense-ros
 RUN cd ~/code_lib &&\
     mkdir -p ~/code_lib/catkin_realsense/src&&\
@@ -165,9 +167,6 @@ RUN cd ~/code_lib &&\
     /bin/bash -c "source /opt/ros/melodic/setup.bash && catkin_make clean && catkin_make -DCATKIN_ENABLE_TESTING=False -DCMAKE_BUILD_TYPE=Release"&&\
     echo -e "\nsource ~/code_lib/catkin_realsense/devel/setup.bash" >> ~/.bashrc&&\
     echo -e "\nsource /opt/ros/melodic/setup.bash" >> /root/.bashrc
-
-#  ===========分割线====以上为cuda102-ubuntu-ros的内容==========
-
 
 #  ===========以下为自己可以添加的内容
 
@@ -182,10 +181,11 @@ WORKDIR /root/catkin_ws
 
 # # Load ROS environment at docker exec bash
 RUN echo -e "\nsource /root/catkin_ws/devel/setup.bash" >> /root/.bashrc
+# ##############################################
 
-# Build
+# # # Build
 RUN /bin/bash -c "source /opt/ros/melodic/setup.bash && catkin_make -DCMAKE_BUILD_TYPE=Release"
-RUN cat /root/.bashrc
+
 
 # Load ROS environment at each run
 COPY ./ros_entrypoint.sh /

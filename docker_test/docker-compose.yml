@@ -4,7 +4,7 @@
 version: '2.3'
 services:
   cuda102-ros-ubuntu18:
-    image: zhuhu/cuda102-ros-ubuntu18:0.2
+    image: zhuhu/cuda102-ros-ubuntu18:0.3
     build: .
 
     command: lxterminal
