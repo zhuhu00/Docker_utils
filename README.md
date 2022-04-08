@@ -16,7 +16,7 @@
 - [**cuda100-ros-ubuntu16**](./docker-cuda100-ros-ubuntu16)
 
 # How to use
-Follow this [tutorial(如何优雅的使用Docker？)](./Tutorial.md). After preparing these documents: `Dockerfile`, `docker-compose.yml`, `.env`, `ros_entrypoint.sh` and so on in the `docker` folder of your project . Using the following command:
+Follow this [tutorial(如何优雅的使用Docker？)](https://zhuanlan.zhihu.com/p/482118286). After preparing these documents: `Dockerfile`, `docker-compose.yml`, `.env`, `ros_entrypoint.sh` and so on in the `docker` folder of your project . Using the following command:
 
 ```bash
 cd docker
