@@ -170,6 +170,13 @@ RUN cd ~/code_lib &&\
 
 #  ===========分割线====以上为zhuhu/cuda110-ubuntu-ros的内容==========
 
+#  ===========分割线====添加backward-cpp=START=========
+RUN apt install libdw-dev&&\
+    wget https://raw.githubusercontent.com/bombela/backward-cpp/master/backward.hpp&&\
+    sudo mv backward.hpp /usr/include
+#  ===========分割线====添加backward-cpp=END==========
+
+
 #  ===========以下为自己可以添加的内容
 # 以上构建成了docker镜像,可在官网拉取
 # 根据不同的环境,可以在这里安装对应的依赖

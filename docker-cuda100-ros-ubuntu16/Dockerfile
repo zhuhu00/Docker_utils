@@ -160,6 +160,13 @@ FROM zhuhu/cuda100-ros-ubuntu16:0.1
 
 #  ===========分割线====以上为cuda100-ros-ubuntu16的内容==========
 
+#  ===========分割线====添加backward-cpp=START=========
+RUN apt install libdw-dev&&\
+    wget https://raw.githubusercontent.com/bombela/backward-cpp/master/backward.hpp&&\
+    sudo mv backward.hpp /usr/include
+#  ===========分割线====添加backward-cpp=END==========
+
+
 
 WORKDIR /root/catkin_ws/src
 # # Load ROS environment at each run
