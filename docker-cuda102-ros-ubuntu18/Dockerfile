@@ -174,7 +174,7 @@ RUN apt install libdw-dev&&\
     wget https://raw.githubusercontent.com/bombela/backward-cpp/master/backward.hpp&&\
     sudo mv backward.hpp /usr/include
 #  ===========分割线====添加backward-cpp=END==========
-
+RUN apt-get install -y libappstream4 terminator
 
 #  ===========以下为自己可以添加的内容
 

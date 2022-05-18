@@ -1,7 +1,8 @@
 # version 0.1
 # hu zhu, zhuhu00@foxmail.com, SUSTech, 02.28.2022
-FROM nvidia/cudagl:10.0-devel-ubuntu16.04
-# FROM zhuhu/cuda100-ros-ubuntu16:0.1
+FROM zhuhu/cuda100-ros-ubuntu16:0.2
+
+# FROM nvidia/cudagl:10.0-devel-ubuntu16.04
 
 # ============以下内容在镜像已有=zhuhu/cuda100-ros-ubuntu16========
 ENV LANG C.UTF-8
@@ -28,6 +29,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libcudnn7-dev=7.6.5.32-1+cuda10.0 \
     && apt-mark hold libcudnn7 \
     && rm -rf /var/lib/apt/lists/*
+
+RUN gpg --keyserver keyserver.ubuntu.com --recv A4B469963BF863CC
+
+RUN gpg --export --armor A4B469963BF863CC |  apt-key add -
 
 # Install tools for development
 RUN apt-get update && \
@@ -72,10 +77,10 @@ RUN apt-get update && \
     python3-dev\
     python-pip\
     python3-pip\
-    python3-opencv \
+    # python3-opencv \
     libcanberra-gtk-module \
     libsnappy-dev \
-    # libboost-all-dev \
+    libboost-all-dev \
     libprotobuf-dev \
     libhdf5-dev \
     libglew-dev\
@@ -148,11 +153,11 @@ RUN git clone -b v0.5 https://github.com/stevenlovegrove/Pangolin.git \
 
 # Ceres install
 RUN cd ~/code_lib
-RUN wget -c http://ceres-solver.org/ceres-solver-2.0.0.tar.gz -O ~/code_lib/ceres.tar.gz \
+RUN wget -c http://ceres-solver.org/ceres-solver-1.14.0.tar.gz -O ~/code_lib/ceres.tar.gz \
     && cd ~/code_lib \
     && tar zxf ceres.tar.gz \
     && pwd && ls\
-    && cd ceres-solver-2.0.0 \
+    && cd ceres-solver-1.14.0 \
     && mkdir build \
     && cd build\
     && cmake .. -DCMAKE_BUILD_TYPE=Release  \
@@ -174,12 +179,12 @@ RUN cat /root/.bashrc
 #  ===========分割线====以上为cuda100-ros-ubuntu16的内容==========
 
 #  ===========分割线====添加backward-cpp=START=========
-RUN apt install libdw-dev&&\
+RUN apt install -y libdw-dev&&\
     wget https://raw.githubusercontent.com/bombela/backward-cpp/master/backward.hpp&&\
     sudo mv backward.hpp /usr/include
 #  ===========分割线====添加backward-cpp=END==========
 
-
+RUN apt-get install -y libappstream4 terminator
 
 WORKDIR /root/catkin_ws/src
 # # Load ROS environment at each run
