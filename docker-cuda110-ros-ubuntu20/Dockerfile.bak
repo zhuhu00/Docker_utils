@@ -135,7 +135,7 @@ RUN sudo apt install -y pkg-config libegl1-mesa-dev libwayland-dev libxkbcommon-
     ros-noetic-hector-trajectory-server
 
 # 需要的其他库
-RUN sudo apt install libpcl-dev libyaml-cpp-dev
+RUN sudo apt install -y libpcl-dev libyaml-cpp-dev
 
 # miniconda 为了搭建pytorch环境
 RUN wget -c https://repo.anaconda.com/miniconda/Miniconda3-py37_4.11.0-Linux-x86_64.sh -O ~/miniconda.sh \
@@ -171,7 +171,7 @@ RUN cd ~/code_lib &&\
 #  ===========分割线====以上为zhuhu/cuda110-ubuntu-ros的内容==========
 
 #  ===========分割线====添加backward-cpp=START=========
-RUN apt install libdw-dev&&\
+RUN apt install -y libdw-dev&&\
     wget https://raw.githubusercontent.com/bombela/backward-cpp/master/backward.hpp&&\
     sudo mv backward.hpp /usr/include
 #  ===========分割线====添加backward-cpp=END==========
