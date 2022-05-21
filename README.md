@@ -1,6 +1,5 @@
 # Docker_utils
 一些经常使用的docker镜像及构建步骤
- - On MACbook(M1)：TBA
 
 ## log
 - Add realsense-sdk and realsense-ros 
@@ -33,7 +32,24 @@ docker-compose up
 ```xhost +```
 
 ## Macbook M1 
-一样的编译镜像方法，不过`rviz`启动不起来，`rosdep update`没办法更新，一直超时，很奇怪。
+需要先安装`socat`和`xquartz`，用`brew install xxx`就可以。
+之后需要配置`xquartz`，打开命令：`open -a Xquartz`使得其能够通过网络连接，在设置->安全性->勾选上允许从网络客户端连接。之后关闭Xquartz，接着命令行中输入：
+```bash
+# 配置socat，命令没有输出，也不能中断，保持运行即可。
+socat TCP-LISTEN:6000,reuseaddr,fork UNIX-CLIENT:\"$DISPLAY\"
+
+# 之后输入：
+ifconfig en0
+# 看ip地址上是什么，之后修改启动容器时的DISPLAY
+export DISPLAY=192.168.0.106:0
+# 可以直接在docker-compose.yaml文件修改
+```
+之后就能成功运行镜像了，不过还有一些问题。
+
+- `rviz`启动不起来，
+- `rosdep update`没办法更新，一直超时，很奇怪。
+
+
 
 # Some Docker Repository Packages 
 | Packages | Docker-Envs | Build status | Usage |
@@ -45,4 +61,4 @@ docker-compose up
 
 # Other materials
 1. [docker-tutorial](https://github.com/twtrubiks/docker-tutorial)
-
+2. [实现Mac主机上的Docker容器中的图形界面显示（运行GUI应用）](https://www.cnblogs.com/noluye/p/11405358.html)
