@@ -6,9 +6,9 @@ services:
   cuda110-ros-ubuntu20:
     image: zhuhu/cuda110-ros-ubuntu20:0.1
     build: .
-    container_name: cuda110-ros-ubuntu20
+    # container_name: cuda110-ros-ubuntu20
 
-    command: lxterminal
+    command: terminator
     runtime: nvidia
     privileged: true
     stdin_open: true

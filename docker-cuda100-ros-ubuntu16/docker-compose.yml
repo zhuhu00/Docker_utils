@@ -4,10 +4,10 @@
 version: '2.3'
 services:
   cuda100-ros-ubuntu16:
-    image: zhuhu/cuda100-ros-ubuntu16:0.1
+    image: zhuhu/cuda100-ros-ubuntu16:0.2
     build: .
 
-    command: lxterminal
+    command: terminator
     runtime: nvidia
     privileged: true
     stdin_open: true
@@ -15,6 +15,8 @@ services:
     environment:
         - DISPLAY
         - QT_X11_NO_MITSHM=1
+    devices:
+        - /dev:/dev
 
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
@@ -23,6 +25,3 @@ services:
 
     entrypoint: /ros_entrypoint.sh
     network_mode: host
-
-# volumes:
-#   cuda100-ros-ubuntu16:
