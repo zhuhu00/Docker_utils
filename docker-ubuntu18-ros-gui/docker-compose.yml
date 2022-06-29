@@ -1,0 +1,30 @@
+version: '3.4'
+services:
+  # cpu development:
+  ubuntu18-cpu-vnc:
+    image: zhuhu/ubuntu18-cpu-vnc:0.1
+    build: .
+      # context: docker
+      # dockerfile: Dockerfile
+    # network: host
+    container_name: ubuntu18-cpu-vnc
+    privileged: true
+    environment:
+        # set VNC login password here:
+        - VNC_PASSWORD=sensorfusion
+        - RESOLUTION=1920x1080
+
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      # mount your workspace here:
+      - $PWD/workspace:/workspace
+    ports:
+      # HTML5 VNC:
+      - 40080:80
+      # standard VNC client:
+      - 45901:5901
+      # supervisord admin:
+      - 49001:9001
+      # ROS master:
+      - 11311:11311
+    # network_mode: host

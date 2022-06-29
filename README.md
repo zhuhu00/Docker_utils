@@ -16,6 +16,7 @@
 - [**cuda102-ros-ubuntu18**](./docker-cuda102-ros-ubuntu18) 
 - [**cuda100-ros-ubuntu16**](./docker-cuda100-ros-ubuntu16)
 - [**docker-mac-m1**](./docker-mac-m1)
+- Ubuntu18-ros-gui: 无GPU，包含ros所需的库，以及可以使用浏览器或者vnc进行访问的docker镜像，来源于[AlexGeControl](https://github.com/AlexGeControl/Sensor-Fusion-for-Localization-Courseware)
 
 
 # How to use
