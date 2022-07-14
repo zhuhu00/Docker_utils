@@ -170,7 +170,7 @@ FROM zhuhu/cuda102-ros-ubuntu18:0.1
 #  ===========分割线====以上为zhuhu/cuda102-ubuntu-ros的内容==========
 
 #  ===========分割线====添加backward-cpp=START=========
-RUN apt install libdw-dev&&\
+RUN apt install -y libdw-dev&&\
     wget https://raw.githubusercontent.com/bombela/backward-cpp/master/backward.hpp&&\
     sudo mv backward.hpp /usr/include
 #  ===========分割线====添加backward-cpp=END==========
